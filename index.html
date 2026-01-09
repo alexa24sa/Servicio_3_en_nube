@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi PWA</title>
+  <title>Cloud PWA - Descarga Simulada</title>
 
   <!-- Vincular el manifiesto -->
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#2196f3" />
+  <meta name="theme-color" content="#6366f1" />
 
   <!-- Íconos -->
   <link rel="icon" href="icons/icon-192.png" />
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="styles.css" />
 
   <!-- Registrar Service Worker -->
   <script>
@@ -22,9 +25,157 @@
   </script>
 </head>
 <body>
-  <h1>Hola, soy una PWA </h1>
-  <p>¡Puedes instalarme!</p>
+  <div class="container">
+    <!-- Header con logo y título -->
+    <header class="header">
+      <div class="logo">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+          <circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2"/>
+          <path d="M25 10 L25 40 M15 25 L35 25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="25" cy="15" r="2" fill="currentColor"/>
+          <circle cx="25" cy="35" r="2" fill="currentColor"/>
+          <circle cx="15" cy="25" r="2" fill="currentColor"/>
+          <circle cx="35" cy="25" r="2" fill="currentColor"/>
+        </svg>
+      </div>
+      <h1 class="title">Cloud PWA Manager</h1>
+      <p class="subtitle">Gestiona tus descargas en la nube</p>
+    </header>
+
+    <!-- Tarjetas de servicios cloud -->
+    <div class="cloud-services">
+      <div class="cloud-card" data-cloud="gcloud">
+        <div class="cloud-icon">☁️</div>
+        <h3>Google Cloud</h3>
+        <p>Firebase Hosting</p>
+        <span class="status-badge active">Activo</span>
+      </div>
+      <div class="cloud-card" data-cloud="aws">
+        <div class="cloud-icon">📦</div>
+        <h3>AWS</h3>
+        <p>Amplify</p>
+        <span class="status-badge active">Activo</span>
+      </div>
+      <div class="cloud-card" data-cloud="azure">
+        <div class="cloud-icon">🔷</div>
+        <h3>Azure</h3>
+        <p>Static Web Apps</p>
+        <span class="status-badge active">Activo</span>
+      </div>
+    </div>
+
+    <!-- Sección de archivos disponibles -->
+    <div class="files-section">
+      <h2>📁 Archivos Disponibles</h2>
+      <div class="files-grid">
+        <div class="file-card" data-file="documento.pdf">
+          <div class="file-icon">📄</div>
+          <div class="file-info">
+            <h3>Documento Importante.pdf</h3>
+            <p class="file-size">2.5 MB</p>
+          </div>
+          <button class="download-btn" onclick="startDownload('documento.pdf', 2500)">
+            <span>Descargar</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 3v10m0 0l3-3m-3 3l-3-3m8 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="file-card" data-file="imagen.png">
+          <div class="file-icon">🖼️</div>
+          <div class="file-info">
+            <h3>Imagen de Alta Calidad.png</h3>
+            <p class="file-size">5.8 MB</p>
+          </div>
+          <button class="download-btn" onclick="startDownload('imagen.png', 5800)">
+            <span>Descargar</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 3v10m0 0l3-3m-3 3l-3-3m8 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="file-card" data-file="video.mp4">
+          <div class="file-icon">🎥</div>
+          <div class="file-info">
+            <h3>Video Tutorial.mp4</h3>
+            <p class="file-size">15.2 MB</p>
+          </div>
+          <button class="download-btn" onclick="startDownload('video.mp4', 15200)">
+            <span>Descargar</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 3v10m0 0l3-3m-3 3l-3-3m8 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="file-card" data-file="codigo.zip">
+          <div class="file-icon">📦</div>
+          <div class="file-info">
+            <h3>Proyecto Completo.zip</h3>
+            <p class="file-size">8.9 MB</p>
+          </div>
+          <button class="download-btn" onclick="startDownload('codigo.zip', 8900)">
+            <span>Descargar</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 3v10m0 0l3-3m-3 3l-3-3m8 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de descarga -->
+    <div id="downloadModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Descargando archivo</h3>
+          <button class="close-btn" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="file-download-info">
+            <div class="file-icon-large" id="modalFileIcon">📄</div>
+            <p id="modalFileName">archivo.pdf</p>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-info">
+              <span id="progressPercent">0%</span>
+              <span id="progressSize">0 MB / 0 MB</span>
+            </div>
+          </div>
+          <div class="download-stats">
+            <div class="stat">
+              <span class="stat-label">Velocidad</span>
+              <span class="stat-value" id="downloadSpeed">0 MB/s</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Tiempo restante</span>
+              <span class="stat-value" id="timeRemaining">--</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Estado</span>
+              <span class="stat-value" id="downloadStatus">Descargando...</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="cancel-btn" onclick="cancelDownload()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>💾 PWA desplegada en múltiples plataformas cloud</p>
+      <p class="footer-small">Compatible con Google Cloud, AWS y Azure</p>
+    </footer>
+  </div>
 
   <script src="app.js"></script>
+  <script src="download.js"></script>
 </body>
 </html>

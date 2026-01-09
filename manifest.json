@@ -1,20 +1,40 @@
 {
-    "name": "Mi PWA de ejemplo",
-    "short_name": "MiPWA",
+    "name": "Cloud PWA Manager - Gestor de Descargas",
+    "short_name": "CloudPWA",
+    "description": "Aplicación web progresiva para gestionar descargas en la nube",
     "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#2196f3",
+    "background_color": "#667eea",
+    "theme_color": "#6366f1",
+    "orientation": "portrait-primary",
     "icons": [
       {
         "src": "icons/icon-192.png",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
       },
       {
         "src": "icons/icon-512.png",
         "sizes": "512x512",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "categories": ["utilities", "productivity"],
+    "screenshots": [],
+    "shortcuts": [
+      {
+        "name": "Nueva Descarga",
+        "short_name": "Descargar",
+        "description": "Iniciar una nueva descarga",
+        "url": "/index.html",
+        "icons": [
+          {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192"
+          }
+        ]
       }
     ]
   }
