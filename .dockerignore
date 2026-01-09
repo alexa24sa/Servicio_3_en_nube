@@ -1,0 +1,46 @@
+# Este archivo especifica qué no incluir en la imagen Docker
+
+# Archivos de Git
+.git
+.gitignore
+.gitattributes
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archivos de configuración de clouds
+.firebaserc
+firebase.json
+app.yaml
+staticwebapp.config.json
+amplify.yml
+buildspec.yml
+.ebextensions/
+.gcloudignore
+
+# Documentación
+README.md
+DEPLOY_INSTRUCTIONS.md
+*.md
+
+# Archivos temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Testing
+test/
+tests/
+coverage/
+
+# Environment
+.env
+.env.*

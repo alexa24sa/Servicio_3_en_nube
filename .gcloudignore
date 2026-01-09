@@ -1,0 +1,59 @@
+# Este archivo especifica archivos que se ignoran al desplegar a Google Cloud
+# Similar a .gitignore, pero específico para gcloud
+
+# Archivos de Git
+.git
+.gitignore
+.gitattributes
+
+# Node modules (si los tuvieras)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Archivos de configuración de otros clouds
+.firebaserc
+firebase.json
+staticwebapp.config.json
+amplify.yml
+buildspec.yml
+.ebextensions/
+
+# Archivos de documentación
+README.md
+DEPLOY_INSTRUCTIONS.md
+*.md
+
+# Archivos temporales
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de prueba
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Archivos de sistema
+.env
+.env.local
+.env.*.local
+
+# Carpetas de build (si las tuvieras)
+dist/
+build/
+coverage/
+
+# Archivos específicos de desarrollo
+docker-compose.yml
+.dockerignore

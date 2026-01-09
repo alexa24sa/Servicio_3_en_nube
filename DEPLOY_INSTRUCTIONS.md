@@ -43,6 +43,71 @@ Esta guía te ayudará a desplegar tu PWA en Google Cloud, AWS y Azure.
 
 ---
 
+## 🐳 GOOGLE CLOUD (Cloud Run) - RECOMENDADO
+
+### Archivos necesarios:
+- `Dockerfile` ✅
+- `nginx.conf` ✅
+- `.gcloudignore` ✅
+- `.dockerignore` ✅
+
+### Paso a paso:
+
+1. **Instalar Google Cloud SDK**
+   - Descarga desde: https://cloud.google.com/sdk/docs/install
+
+2. **Iniciar sesión**
+   ```bash
+   gcloud auth login
+   ```
+
+3. **Crear/Seleccionar proyecto**
+   ```bash
+   gcloud projects create mi-pwa-proyecto --name="Mi PWA"
+   gcloud config set project mi-pwa-proyecto
+   ```
+
+4. **Habilitar APIs necesarias**
+   ```bash
+   gcloud services enable cloudbuild.googleapis.com run.googleapis.com
+   ```
+
+5. **Construir y desplegar desde el repositorio**
+   ```bash
+   gcloud run deploy mi-pwa \
+     --source . \
+     --platform managed \
+     --region us-central1 \
+     --allow-unauthenticated
+   ```
+
+   **O construir localmente primero:**
+   ```bash
+   # Construir la imagen
+   gcloud builds submit --tag gcr.io/mi-pwa-proyecto/mi-pwa
+   
+   # Desplegar
+   gcloud run deploy mi-pwa \
+     --image gcr.io/mi-pwa-proyecto/mi-pwa \
+     --platform managed \
+     --region us-central1 \
+     --allow-unauthenticated
+   ```
+
+6. **Tu PWA estará disponible en:**
+   ```
+   https://mi-pwa-xxxxx-uc.a.run.app
+   ```
+
+### Ventajas de Cloud Run:
+- ✅ Escala automáticamente a 0 (sin costo cuando no hay tráfico)
+- ✅ Paga solo por uso
+- ✅ Despliegue directo desde repositorio
+- ✅ HTTPS automático
+- ✅ Sin servidor que administrar
+
+---
+
 ## ☁️ GOOGLE CLOUD (App Engine)
 
 ### Archivos necesarios:
