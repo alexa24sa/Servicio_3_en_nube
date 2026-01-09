@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi PWA</title>
+
+  <!-- Vincular el manifiesto -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2196f3" />
+
+  <!-- Íconos -->
+  <link rel="icon" href="icons/icon-192.png" />
+
+  <!-- Registrar Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registrado ✅'))
+        .catch(err => console.log('SW falló ⚠️', err));
+    }
+  </script>
+</head>
+<body>
+  <h1>Hola, soy una PWA </h1>
+  <p>¡Puedes instalarme!</p>
+
+  <script src="app.js"></script>
+</body>
+</html>

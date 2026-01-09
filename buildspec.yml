@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No se requiere instalación para archivos estáticos"
+  
+  pre_build:
+    commands:
+      - echo "Preparando archivos para despliegue"
+  
+  build:
+    commands:
+      - echo "Construyendo PWA"
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: '.'
+  discard-paths: no

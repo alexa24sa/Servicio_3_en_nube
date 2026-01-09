@@ -1,0 +1,32 @@
+runtime: python39
+
+handlers:
+  # Servir el service worker sin cache
+  - url: /sw.js
+    static_files: sw.js
+    upload: sw.js
+    secure: always
+    http_headers:
+      Cache-Control: 'no-cache'
+      Service-Worker-Allowed: '/'
+
+  # Servir archivos estáticos con cache
+  - url: /(.*\.(js|css|png|jpg|jpeg|gif|svg|webp|ico))
+    static_files: \1
+    upload: .*\.(js|css|png|jpg|jpeg|gif|svg|webp|ico)
+    secure: always
+    http_headers:
+      Cache-Control: 'public, max-age=31536000'
+
+  # Servir manifest.json
+  - url: /manifest.json
+    static_files: manifest.json
+    upload: manifest.json
+    secure: always
+    mime_type: application/json
+
+  # Redirigir todo a index.html
+  - url: /.*
+    static_files: index.html
+    upload: index.html
+    secure: always
